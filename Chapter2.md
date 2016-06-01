@@ -72,4 +72,20 @@ $ chmod -R 777 app/cache/* app/logs/*
 
 **app**
 
-Thư mục này chỉ chứa một vài file và thư mục nhưng nó điều khiên hoạt động của cá project. Hầu như tất cả mã nguồn của project đều nằm ở thư mục các, gọi là các `bundles` nhưng chúng được triệu gọi trong class `AppKernel`, được cấu hình ở file `config.yml` nằm trong thư mục `app` này.  
+Thư mục này chỉ chứa một vài file và thư mục nhưng nó điều khiên hoạt động của cá project. Hầu như tất cả mã nguồn của project đều nằm ở thư mục khác, gọi là các `bundles` nhưng chúng được kích hoạt trong class `AppKernel`, được cấu hình ở file `config/config.yml` cũng nằm trong thư mục `app` này. Mỗi `bundle` là tập hợp một vài file mã nguồn làm một công việc nào đó, `bundle` có thể ở dạng chia sẻ giữa các project hoặc có thể chỉ tồn tại ở một project duy nhất. Để tạo ra một `bundle` chia sẻ giữa các project cần một số cấu hình đặc biệt mà chúng ta sẽ bàn đến trong một khóa học khác. 
+
+Tất cả URL trong trang web của bạn sẽ được điều khiển trong file `routing.yml`, là cách mà người dùng sẽ gõ trên browser để đến được với những nội dung trên web. 
+
+Một số file quan trọng khác như `app/console` hay `app/Resources/views/base.html.twig` thì chúng ta sẽ nói rõ hơn trong quá trình học.
+
+**src**
+
+Đây là nơi chứa phần lớn mã nguồn của project, được chia ra thành các `bundle`, mỗi `bundle` thực hiện một nhiệm vụ và thường nằm trong một thư mục riêng với hậu tố `Bundle`. Ví dụ như ở project demo sẽ có thư mục `AcmeDemoBundle` trong thư mục `src`.
+
+**vendor** 
+
+Như đã trình bày ở phần `Composer` thì đây là nơi chứa mã nguồn các thư viện sử dụng trong project, trong hầu hết trường hợp thì bạn không cần quan tâm trong này có gì, trừ khi bạn muốn tìm hiểu sâu về một bundle nào đó.
+
+**web** 
+
+Đây chính là thư mục gốc (document root) trên web server hay web hosting trong trường hợp bạn không dùng web server có sẵn của Symfony, vì thế tất cả file trong thư mục này sẽ được truy cập public. Những file thường được đặt trong thư mục này gồm : javascript, CSS, ảnh và font files. Có hai file thực sự tiếp nhận các request từ phía user đó là `app_dev.php` - nếu môi trường là `dev` (chạy trên máy của bạn) và `app.php` - nếu môi trường là `production` (chạy thật trên web hosting). Hai file này giống như hai cánh cửa duy nhất dẫn đến trang web của bạn, bạn có thể cài đặt bảo vệ ở hai cánh cửa này theo cách bạn muốn (firewalls, ACL ...) trong file `app/config/security.yml`.
